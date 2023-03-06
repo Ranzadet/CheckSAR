@@ -4,13 +4,14 @@ import '../Styles/Patient.css'
 
 
 const PatientAssess = (props) => {
-    const [checkItems, setCheckItems] = useState(['Check Pulse', 'Check Breathing', "Check Airway", "Check For Shock", "Check For Hypothermia"]);
+    const tempItems = (props.data.length > 0) ? props.data : ['Check Pulse', 'Check Breathing', "Check Airway", "Check For Shock", "Check For Hypothermia"];
+    const [checkItems, setCheckItems] = useState(tempItems);
     const arr = []
     for (let i = 0;i<checkItems.length;i++){
       arr.push(false)
     }
 
-    const arr2 = (props.data.length > 0) ? props.data : arr;
+    const arr2 = (props.states.length > 0) ? props.states : arr;
     const [checkedItems,setCheckedItems] = useState(arr2);
     console.log(props);
 
@@ -30,14 +31,20 @@ const PatientAssess = (props) => {
         checkedItems[index] = !checkedItems[index];
       }
       setCheckedItems(checkedItems);
-      props.setter(checkedItems);
+      props.setter(checkItems, checkedItems);
       console.log(checkedItems);
+    }
+
+    const handleEdit = () => {
+      setIsEditing(!isEditing);
+      let elem = document.getElementById("edit");
+      elem.textContent = !isEditing ? "Stop Edit" : "Edit";
     }
 
     return (
         <div>
 
-          <button onClick={() => {setIsEditing(!isEditing)}}>Edit</button>
+          <button id="edit" onClick={handleEdit}>Edit</button>
 
           <h1 class="f">
             Patient Assessment Checklist:

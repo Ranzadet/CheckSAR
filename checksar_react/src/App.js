@@ -8,17 +8,20 @@ import Navbar2 from './Components/Navbar2'
 
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [patientItemState, setPatientItemState] = useState([]);
+  const [patientItems, setPatientItems] = useState([]);
 
-  const carryData = (data) =>{
-    setItems(data);
+  const carryPatientData = (data, states) =>{
+    setPatientItems(data);
+    setPatientItemState(states);
   }
+
   return (
     <Router>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/Patient' element={<PatientAssess setter={carryData} data={items}/>} />
+        <Route path='/Patient' element={<PatientAssess setter={carryPatientData} data={patientItems} states={patientItemState}/>} />
 
       </Routes>
     </Router>

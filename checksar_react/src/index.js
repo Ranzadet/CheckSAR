@@ -1,6 +1,6 @@
 import {React} from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './Styles/index.css';
 import App from './App';
 
 let t = false;
@@ -8,11 +8,8 @@ let t = false;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <div>
-    <App test={(n) => {console.log(n); return "imported from index.js!";}}/>
-    <p>hello</p>
-    <button onClick={() => {t = !t; console.log(t);}}>click</button>
-    {t ? <p>sheeesh</p> : null}
-    <input type="text" defaultValue={'sss'}></input>
+        <App />
+        <input type="text" defaultValue={'sss'}></input>
     </div>
 
 );
